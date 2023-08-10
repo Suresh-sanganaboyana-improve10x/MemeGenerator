@@ -78,14 +78,4 @@
         app:layout_constraintStart_toStartOf="@+id/bottom_txt"
         app:layout_constraintTop_toBottomOf="@+id/bottom_txt" />
 
-    <ImageView
-        android:id="@+id/meme_img"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/meme_generate_btn"
-        app:srcCompat="@android:drawable/ic_menu_gallery" />
 </androidx.constraintlayout.widget.ConstraintLayout>

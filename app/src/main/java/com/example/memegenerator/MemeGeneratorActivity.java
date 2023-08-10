@@ -2,6 +2,7 @@ package com.example.memegenerator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -12,6 +13,7 @@ import com.squareup.picasso.Picasso;
 public class MemeGeneratorActivity extends AppCompatActivity {
 
     private ActivityMemeGeneratorBinding binding;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,9 @@ public class MemeGeneratorActivity extends AppCompatActivity {
     private void handleGenerateMemeBtn() {
         binding.memeGenerateBtn.setOnClickListener(v -> {
            String memeUrl = generateMemeUrl(getTemplate(), getTopText(), getBottomText());
-           showImage(memeUrl);
+            Intent intent = new Intent(this, ShowMemeActivity.class);
+            intent.putExtra(ShowMemeActivity.MEME_URL, memeUrl);
+            startActivity(intent);
         });
     }
 
@@ -49,9 +53,5 @@ public class MemeGeneratorActivity extends AppCompatActivity {
 
     private String generateMemeUrl(String templateText, String topText, String bottomText) {
         return "https://apimeme.com/meme?meme="+templateText+"&top="+topText+"&bottom="+bottomText;
-    }
-
-    private void showImage(String imageUrl) {
-        Picasso.get().load(imageUrl).into(binding.memeImg);
     }
 }
