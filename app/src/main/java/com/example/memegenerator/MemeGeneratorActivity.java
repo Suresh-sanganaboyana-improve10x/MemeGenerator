@@ -3,6 +3,8 @@ package com.example.memegenerator;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.memegenerator.databinding.ActivityMemeGeneratorBinding;
 import com.squareup.picasso.Picasso;
@@ -16,7 +18,14 @@ public class MemeGeneratorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMemeGeneratorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        setupSpinner();
         handleGenerateMemeBtn();
+    }
+
+    private void setupSpinner() {
+        String [] templateNames = getResources().getStringArray(R.array.templates);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, templateNames);
+        binding.memeSp.setAdapter(adapter);
     }
 
     private void handleGenerateMemeBtn() {
@@ -27,7 +36,7 @@ public class MemeGeneratorActivity extends AppCompatActivity {
     }
 
     private String getTemplate() {
-        return binding.templateNameTxt.getText().toString();
+        return binding.memeSp.getSelectedItem().toString();
     }
 
     private String getTopText() {
